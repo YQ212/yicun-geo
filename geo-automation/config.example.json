@@ -1,0 +1,23 @@
+{
+  "_说明": "复制为 config.json 后填写真实值。所有字段均可留空，留空时系统使用模板兜底生成（无需任何密钥即可跑通）。",
+  "llm": {
+    "enabled": false,
+    "base_url": "https://api.openai.com/v1",
+    "api_key": "",
+    "model": "gpt-4o-mini",
+    "temperature": 0.7,
+    "timeout": 60
+  },
+  "publish": {
+    "target": "local",
+    "official_site_dir": "/var/www/yicun/blog",
+    "cms_webhook": "",
+    "zhihu_enabled": false
+  },
+  "index_submit": {
+    "baidu_token": "",
+    "bing_key": ""
+  },
+  "output_dir": "output",
+  "site_url": "https://www.gz-yicun.com"
+}

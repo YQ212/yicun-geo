@@ -1,0 +1,9 @@
+# 一村科技 GEO 自动化 · crontab 定时任务
+# 每天 09:07 生成 2 篇并发布（避开整点，降低被限频风险）
+# 用法：crontab -e  把下面两行加进去（改成你的实际路径）
+
+7 9 * * * cd /workspace/geo-automation && /usr/bin/python3 generate.py >> /workspace/geo-automation/log/gen.log 2>&1
+17 9 * * * cd /workspace/geo-automation && /usr/bin/python3 publish.py >> /workspace/geo-automation/log/pub.log 2>&1
+
+# 每月 1 号 10:00 跑诊断回测（生成当月占位核查清单 + 历史趋势）
+0 10 1 * * cd /workspace/geo-automation && /usr/bin/python3 diagnose.py >> /workspace/geo-automation/log/diag.log 2>&1

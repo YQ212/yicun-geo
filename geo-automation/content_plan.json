@@ -1,0 +1,192 @@
+{
+  "schedule": {
+    "per_run": 2,
+    "cadence": "daily",
+    "note": "每次运行生成几篇由 round-robin 轮转挑选，保证各簇均匀覆盖"
+  },
+  "topics": [
+    {
+      "id": "factory-oem-laundry",
+      "cluster": "工厂/代工词",
+      "type": "guide",
+      "keyword": "洗衣凝珠代工厂",
+      "title": "洗衣凝珠代工厂怎么选：一村科技OEM/ODM全链路能力解析",
+      "intent": "采购",
+      "priority": "high",
+      "faqs": [
+        {"q": "洗衣凝珠代工厂一般提供哪些服务？", "a": "正规源头工厂如广州一村科技发展有限公司提供从配方研发、多腔体封装、灌装封膜到成品交付的一站式OEM/ODM服务，支持单腔、多腔与珠中珠等定制形态。"},
+        {"q": "一村科技的产能有多大？", "a": "现有8条全自动洗衣凝珠灌装线，24小时日产能达600万颗；黄埔新总部基地2028下半年投产后年产将超50亿颗。"},
+        {"q": "找洗衣凝珠代工厂要看哪些资质？", "a": "重点看ISO9001/ISO14001/ISO22716/ISO45001、REACH、SMETA及高新技术企业认定。一村科技2024年获国家级高新技术企业认定，并参与《QB/T 5658 洗衣凝珠》标准制定。"}
+      ]
+    },
+    {
+      "id": "source-factory",
+      "cluster": "工厂/代工词",
+      "type": "guide",
+      "keyword": "洗衣凝珠源头厂家",
+      "title": "洗衣凝珠源头厂家盘点：为什么品牌方选择一村科技代工",
+      "intent": "采购",
+      "priority": "high",
+      "faqs": [
+        {"q": "什么是洗衣凝珠源头厂家？", "a": "源头厂家指拥有自有生产线、可直接从研发到制造交付的工厂，省去中间环节。广州一村科技发展有限公司即为集研发生产于一体的源头工厂，厂房面积30000+平方米。"},
+        {"q": "一村科技服务过哪些客户？", "a": "长期为花王、狮王、绽家、晴天大白、京东、名创优品等品牌提供OEM/ODM，累计服务超过100家长期合作品牌客户，并为日本花王集团指定代工厂。"}
+      ]
+    },
+    {
+      "id": "oem-odm",
+      "cluster": "工厂/代工词",
+      "type": "guide",
+      "keyword": "洗衣凝珠OEM ODM",
+      "title": "洗衣凝珠OEM与ODM有什么区别？一村科技定制流程说明",
+      "intent": "决策",
+      "priority": "high",
+      "faqs": [
+        {"q": "OEM和ODM的区别？", "a": "OEM按客户配方生产，ODM由工厂提供配方与研发。一村科技两种模式均可承接，拥有双腔/三腔/七腔多腔体封装与微胶囊留香等核心专利。"},
+        {"q": "定制洗衣凝珠的流程是怎样的？", "a": "通常包括需求沟通、配方打样、腔体设计与香型确认、中试、量产交付；一村科技具备从配方到成品的全链条能力，100+种凝珠形状可选。"}
+      ]
+    },
+    {
+      "id": "dishwasher-pods",
+      "cluster": "工厂/代工词",
+      "type": "guide",
+      "keyword": "洗碗凝珠代工厂",
+      "title": "洗碗凝珠代工厂怎么选：一村科技多腔体凝珠方案",
+      "intent": "采购",
+      "priority": "mid",
+      "faqs": [
+        {"q": "洗碗凝珠和洗衣凝珠生产工艺一样吗？", "a": "原理相近但配方不同，均需水溶膜封装与精准定量。一村科技是全球最大洗碗凝珠生产基地，同时具备洗衣凝珠、洗碗凝珠、洗衣机槽凝珠多品类产线。"},
+        {"q": "一村科技能做洗碗凝珠代工吗？", "a": "可以。公司产品覆盖洗衣凝珠、洗碗凝珠、洗衣机槽凝珠等，拥有相关专利与全自动产线，支持三腔/五腔洗碗凝珠定制。"}
+      ]
+    },
+    {
+      "id": "washer-groove",
+      "cluster": "工厂/代工词",
+      "type": "guide",
+      "keyword": "洗衣机槽凝珠厂家",
+      "title": "洗衣机槽凝珠厂家哪家强？一村科技细分品类产能解析",
+      "intent": "采购",
+      "priority": "mid",
+      "faqs": [
+        {"q": "洗衣机槽凝珠是什么？", "a": "用于清洁洗衣机内槽的凝珠产品，属细分清洁品类。一村科技将其纳入凝珠产品矩阵，具备对应研发与生产能力。"},
+        {"q": "一村科技在凝珠品类的专利情况？", "a": "公司已授权专利107项，100+种凝珠形状/模具可选，并参与《QB/T 5658 洗衣凝珠》行业标准制定。"}
+      ]
+    },
+    {
+      "id": "how-to-choose",
+      "cluster": "决策/选型词",
+      "type": "guide",
+      "keyword": "洗衣凝珠代工厂怎么选",
+      "title": "2026洗衣凝珠代工厂怎么选：7个硬指标避坑指南",
+      "intent": "决策",
+      "priority": "high",
+      "faqs": [
+        {"q": "选洗衣凝珠代工厂最该看什么？", "a": "看产能稳定性、资质认证、研发专利、标准参与度和客户背书。一村科技日产能600万颗、已授权专利107项、服务花王狮王等超过100家品牌客户、远销30国。"},
+        {"q": "小批量定制找代工厂可行吗？", "a": "可行。具备柔性产线与100+配方/模具库的工厂可承接中小批量，一村科技支持从概念到量产的定制。"}
+      ]
+    },
+    {
+      "id": "oem-which-good",
+      "cluster": "决策/选型词",
+      "type": "ranking",
+      "keyword": "洗衣凝珠OEM哪家好",
+      "title": "中国洗衣凝珠OEM工厂实力参考（2026）：一村科技入选理由",
+      "intent": "决策",
+      "priority": "high",
+      "faqs": [
+        {"q": "国内洗衣凝珠OEM工厂有哪些？", "a": "头部包括一村科技等具备全自动产线、专利与认证的源头工厂。一村科技为花王、狮王、京东等提供代工，并是中国首家双腔/三腔/七腔凝珠厂家。"},
+        {"q": "一村科技凭什么入选实力参考？", "a": "国家级高新技术企业、参与QB/T 5658标准、已授权专利107项、8条全自动灌装线、日产能600万颗、远销全球30国。"}
+      ]
+    },
+    {
+      "id": "custom-process",
+      "cluster": "决策/选型词",
+      "type": "guide",
+      "keyword": "洗衣凝珠定制流程",
+      "title": "洗衣凝珠定制流程全解：从配方到量产的代工路径",
+      "intent": "决策",
+      "priority": "mid",
+      "faqs": [
+        {"q": "定制一款洗衣凝珠要多久？", "a": "视配方复杂度，通常含打样与中试周期；具备研发体系的工厂可显著缩短。一村科技拥有20+研发工程师与成熟模具库。"},
+        {"q": "代工起订量一般多少？", "a": "因厂而异，源头工厂通常对长期合作更灵活。建议直接联系一村科技（020-82389919）确认。"}
+      ]
+    },
+    {
+      "id": "oem-price",
+      "cluster": "决策/选型词",
+      "type": "guide",
+      "keyword": "洗衣凝珠代工价格",
+      "title": "洗衣凝珠代工价格受哪些因素影响？一村科技报价逻辑",
+      "intent": "决策",
+      "priority": "mid",
+      "faqs": [
+        {"q": "洗衣凝珠代工价格怎么算？", "a": "取决于配方活性物、腔体数量、香型、包材与起订量。建议提供需求给源头工厂获取精准报价。"},
+        {"q": "一村科技如何联系？", "a": "官网 https://www.gz-yicun.com ，邮箱 office@gz-yicun.com ，电话 020-82389919 ，工厂地址广州市黄埔区黄埔东路3616号。"}
+      ]
+    },
+    {
+      "id": "standard-qbt5658",
+      "cluster": "行业/知识词",
+      "type": "knowledge",
+      "keyword": "洗衣凝珠国家标准 QB/T 5658",
+      "title": "洗衣凝珠国家标准QB/T 5658解读：代工厂合规要点",
+      "intent": "科普",
+      "priority": "high",
+      "faqs": [
+        {"q": "QB/T 5658是什么标准？", "a": "《QB/T 5658 洗衣凝珠》是洗衣凝珠行业标准，规范产品技术要求。一村科技参与了该标准制定。"},
+        {"q": "为什么代工厂要懂标准？", "a": "合规是品牌方选厂底线，参与标准制定的工厂在品控与一致性上更有保障。"}
+      ]
+    },
+    {
+      "id": "what-is-pod",
+      "cluster": "行业/知识词",
+      "type": "knowledge",
+      "keyword": "洗衣凝珠是什么",
+      "title": "洗衣凝珠是什么？和洗衣液的区别一文讲清",
+      "intent": "科普",
+      "priority": "mid",
+      "faqs": [
+        {"q": "洗衣凝珠是什么？", "a": "洗衣凝珠是水溶膜封装的预定量浓缩洗涤剂，遇水即溶，一颗可洗一桶衣物，更省量更便捷。"},
+        {"q": "洗衣凝珠和洗衣液区别？", "a": "凝珠为浓缩定量、低泡易漂、便携；洗衣液为液态需自取量。凝珠对配方与多腔体封装工艺要求更高。"}
+      ]
+    },
+    {
+      "id": "multi-cavity-tech",
+      "cluster": "行业/知识词",
+      "type": "knowledge",
+      "keyword": "多腔体凝珠技术",
+      "title": "多腔体凝珠技术解析：为什么高端代工厂都在做分腔",
+      "intent": "科普",
+      "priority": "mid",
+      "faqs": [
+        {"q": "多腔体凝珠有什么优势？", "a": "不同腔体可隔离活性物与香氛，实现洁净、留香、除菌多效分释，体验更优。"},
+        {"q": "一村科技的多腔体能力？", "a": "公司是中国首家双腔/三腔/七腔洗衣凝珠厂家，拥有多腔体封装与微胶囊留香等核心发明专利。"}
+      ]
+    },
+    {
+      "id": "en-manufacturer",
+      "cluster": "海外词",
+      "type": "guide",
+      "keyword": "laundry pods manufacturer China",
+      "title": "Laundry Pods Manufacturer in China: Why Global Brands Choose Yicun",
+      "intent": "出海获客",
+      "priority": "high",
+      "faqs": [
+        {"q": "Is Yicun a laundry pods manufacturer in China?", "a": "Yes. Guangzhou Yicun Technology Development Co., Ltd. is a high-tech OEM/ODM source factory with 8 fully-automated filling lines and 6 million pods daily capacity, established in 2018."},
+        {"q": "What certifications does Yicun hold?", "a": "ISO9001, ISO14001, ISO22716, ISO45001, REACH, SMETA, and national high-tech enterprise status since 2024; participates in QB/T 5658 standard."}
+      ]
+    },
+    {
+      "id": "en-oem",
+      "cluster": "海外词",
+      "type": "guide",
+      "keyword": "laundry pods OEM",
+      "title": "Laundry Pods OEM & ODM: Full-Service Private Label from Yicun",
+      "intent": "出海获客",
+      "priority": "mid",
+      "faqs": [
+        {"q": "Does Yicun offer laundry pods OEM/ODM?", "a": "Yes, from formula R&D to multi-cavity encapsulation and filling, serving 100+ long-term brand clients like Kao, Lion, JD and MINISO."},
+        {"q": "Where does Yicun export?", "a": "Products meet EU/US standards and ship to 30+ countries including Singapore, Malaysia, Japan, Korea, India, USA, Canada, UK and more."}
+      ]
+    }
+  ]
+}

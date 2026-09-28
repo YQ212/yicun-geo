@@ -1,0 +1,87 @@
+# 一村科技 GEO 自动化 · GitHub Actions 定时流水线（零依赖 / 零 token）
+# 放置于仓库 .github/workflows/geo-daily.yml
+# 作用：每天北京 09:07 自动生成 + 发布 + 部署到 GitHub Pages（公开可抓，AI 每日来读）
+# 月度 1 号额外跑 diagnose 占位回测
+# 启用步骤见 README「零运维自动托管」一节
+
+name: GEO Daily
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+on:
+  schedule:
+    - cron: '7 1 * * *'        # UTC 01:07 ≈ 北京 09:07 每日生成+部署
+    - cron: '0 2 1 * *'        # UTC 02:00 ≈ 北京 10:00 每月1号诊断回测
+  workflow_dispatch:           # 支持手动点按钮触发
+
+concurrency:
+  group: geo-pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install deps
+        run: pip install -r geo-automation/requirements.txt
+      - name: Generate + publish
+        env:
+          LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+        run: |
+          cd geo-automation
+          if [ -n "$LLM_API_KEY" ]; then
+            cp config.example.json config.json
+            python3 - <<'PY'
+          import json, os
+          c = json.load(open('config.json'))
+          c['llm']['enabled'] = True
+          c['llm']['api_key'] = os.environ['LLM_API_KEY']
+          json.dump(c, open('config.json','w'), ensure_ascii=False, indent=2)
+          PY
+          fi
+          python3 generate.py
+          python3 publish.py
+      - name: Commit generated content
+        run: |
+          git config user.name "geo-bot"
+          git config user.email "geo@yicun.local"
+          git add geo-automation/output
+          git commit -m "geo: daily content $(date +%F)" || echo "no changes"
+          git push
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: geo-automation/output
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+  diagnose:
+    if: github.event.schedule == '0 2 1 * *' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Monthly diagnose
+        run: |
+          cd geo-automation
+          pip install -r requirements.txt
+          # 每月 1 号由额外 schedule 触发；此处保证手动触发也能跑
+          python3 diagnose.py || true
