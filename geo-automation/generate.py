@@ -40,8 +40,8 @@ def load_config():
     return load_json(cfg_path)
 
 
-# ---------- 选题轮转 ----------
-def pick_topics(plan, cfg, force=None, dry=False):
+# ---------- 选题轮转（主干优先 + 长尾见缝插针） ----------
+def pick_topics(plan, cfg, force=None, dry=False, today=None):
     topics = plan["topics"]
     per_run = plan.get("schedule", {}).get("per_run", 2)
     if force:
@@ -49,21 +49,42 @@ def pick_topics(plan, cfg, force=None, dry=False):
         if not sel:
             print(f"[warn] 未找到选题 {force}")
         return sel
-    state = {}
-    if os.path.exists(STATE_FILE):
-        try:
-            state = load_json("state.json")
-        except Exception:
-            state = {}
-    idx = state.get("cursor", 0)
+
+    out_root = os.path.join(BASE, cfg.get("output_dir", "output"))
+
+    def written(t):
+        return os.path.exists(os.path.join(out_root, t["id"], "index.html"))
+
+    core = [t for t in topics if t.get("core")]          # 热门主干：每日优先且持续刷新
+    tail = [t for t in topics if not t.get("core")]       # 长尾拓展：只发未写过的，发完回到纯主干
+    if not core:
+        core = topics
+
+    today = (today or datetime.date.today()).toordinal()
+    # 主干每日必出；偶数日期且仍有未写长尾时，让出 1 个槽位给长尾（热门仍占多数）
+    core_slots = per_run
+    if today % 2 == 0 and any(not written(t) for t in tail):
+        core_slots = max(1, per_run - 1)
+
     chosen = []
-    for _ in range(per_run):
-        chosen.append(topics[idx % len(topics)])
-        idx += 1
-    if not dry:
-        with open(STATE_FILE, "w", encoding="utf-8") as f:
-            json.dump({"cursor": idx % len(topics), "last_run": datetime.date.today().isoformat()}, f, ensure_ascii=False, indent=2)
-    return chosen
+    for k in range(core_slots):
+        chosen.append(core[(today + k) % len(core)])
+    for t in tail:
+        if len(chosen) >= per_run:
+            break
+        if not written(t):
+            chosen.append(t)
+    # 长尾不足时，用主干补齐，保证每天产出 per_run 篇
+    hi = 0
+    while len(chosen) < per_run:
+        chosen.append(core[(today + core_slots + hi) % len(core)])
+        hi += 1
+    # 去重，保持顺序
+    seen, final = set(), []
+    for t in chosen:
+        if t["id"] not in seen:
+            seen.add(t["id"]); final.append(t)
+    return final
 
 
 # ---------- LLM 调用（可选） ----------
