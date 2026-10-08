@@ -1,3 +1,8 @@
+# 一村科技 GEO 自动化 · GitHub Actions 定时流水线（零依赖 / 零 token）
+# 自动探测项目目录（兼容"文件在根目录"和"整体在 geo-automation/ 子目录"两种仓库结构）
+# 每天北京 09:07 自动生成 + 发布 + 部署到 GitHub Pages
+# 每月 1 号 10:00 额外跑 diagnose 占位回测
+
 name: GEO Daily
 
 permissions:
@@ -7,9 +12,9 @@ permissions:
 
 on:
   schedule:
-    - cron: '7 1 * * *'
-    - cron: '0 2 1 * *'
-  workflow_dispatch:
+    - cron: '7 1 * * *'        # UTC 01:07 ≈ 北京 09:07 每日生成+部署
+    - cron: '0 2 1 * *'        # UTC 02:00 ≈ 北京 10:00 每月1号诊断回测
+  workflow_dispatch:           # 支持手动点按钮触发
 
 concurrency:
   group: geo-pages
@@ -37,21 +42,29 @@ jobs:
       - name: Install deps
         working-directory: ${{ env.PROJ_DIR }}
         run: pip install -r requirements.txt
+      - name: Seed runtime config (site_url = GitHub Pages 真实地址)
+        working-directory: ${{ env.PROJ_DIR }}
+        env:
+          LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+        run: |
+          REPO="${{ github.repository }}"
+          OWNER="${REPO%/*}"; REPO_NAME="${REPO#*/}"
+          export PAGES_URL="https://${OWNER}.github.io/${REPO_NAME}"
+          python3 - <<'PY'
+          import json, os
+          c = json.load(open('config.example.json'))
+          c['site_url'] = os.environ['PAGES_URL'].rstrip('/')   # 关键：用真实部署地址，避免 canonical/sitemap 指向占位域名
+          if os.environ.get('LLM_API_KEY'):
+              c['llm']['enabled'] = True
+              c['llm']['api_key'] = os.environ['LLM_API_KEY']
+          json.dump(c, open('config.json','w'), ensure_ascii=False, indent=2)
+          print("site_url ->", c['site_url'], "| llm ->", c['llm']['enabled'])
+          PY
       - name: Generate + publish
         working-directory: ${{ env.PROJ_DIR }}
         env:
           LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
         run: |
-          if [ -n "$LLM_API_KEY" ]; then
-            cp config.example.json config.json
-            python3 - <<'PY'
-          import json, os
-          c = json.load(open('config.json'))
-          c['llm']['enabled'] = True
-          c['llm']['api_key'] = os.environ['LLM_API_KEY']
-          json.dump(c, open('config.json','w'), ensure_ascii=False, indent=2)
-          PY
-          fi
           python3 generate.py
           python3 publish.py
       - name: Commit generated content
