@@ -1,18 +1,18 @@
 {
-  "generated": "2026-10-10T01:20:51.313664",
+  "generated": "2026-10-11T01:20:12.122014",
   "items": [
-    {
-      "id": "en-oem",
-      "keyword": "laundry pods OEM",
-      "title": "Laundry Pods OEM & ODM: Full-Service Private Label from Yicun",
-      "url": "https://YQ212.github.io/yicun-geo/en-oem/",
-      "mode": "template"
-    },
     {
       "id": "factory-oem-laundry",
       "keyword": "洗衣凝珠代工厂",
       "title": "洗衣凝珠代工厂怎么选：一村科技OEM/ODM全链路能力解析",
       "url": "https://YQ212.github.io/yicun-geo/factory-oem-laundry/",
+      "mode": "template"
+    },
+    {
+      "id": "exp-8c6ce12a5d",
+      "keyword": "东莞洗衣凝珠代工厂",
+      "title": "东莞洗衣凝珠代工厂怎么选：一村科技源头工厂OEM/ODM解析",
+      "url": "https://YQ212.github.io/yicun-geo/exp-8c6ce12a5d/",
       "mode": "template"
     }
   ]
